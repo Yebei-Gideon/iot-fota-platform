@@ -11,7 +11,7 @@ iot-fota-platform/
 │   ├── firmware-service/         # Firmware storage, versions, metadata
 │   ├── ota-orchestrator/         # Rollouts, scheduling, retries
 │   ├── telemetry-service/        # Logs, metrics, device reports
-│   ├── web/                      # Nuxt 3 web UI
+│   ├── web/                      # Nuxt 4 web UI
 │
 ├── packages/                    # Shared libraries (pure logic)
 │   ├── shared-types/             # TypeScript types (devices, firmware, OTA)
@@ -54,5 +54,5 @@ iot-fota-platform/
 
 ## Deployments Link
 
-- [apps/web live at fotaweb-beta.up.railway.app](fotaweb-beta.up.railway.app)
-- [app/api-gateway live at fota-api-gateway-beta.up.railway.app](fota-api-gateway-beta.up.railway.app)
+- [apps/web live at fotaweb-beta.up.railway.app](#)
+- [app/api-gateway live at fota-api-gateway-beta.up.railway.app](#)
