@@ -2,27 +2,31 @@
 export default defineNuxtConfig({
   modules: [
     '@nuxt/eslint',
-    '@nuxt/ui'
+    '@nuxt/ui',
   ],
 
   devtools: {
-    enabled: true
+    enabled: true,
   },
 
   css: ['~/assets/css/main.css'],
 
   routeRules: {
-    '/': { prerender: true }
+    '/': { prerender: true },
   },
-  
+
   compatibilityDate: '2025-01-15',
 
   eslint: {
     config: {
+      standalone: false,
       stylistic: {
-        commaDangle: 'never',
-        braceStyle: '1tbs'
-      }
-    }
-  }
+        semi: true,
+        quotes: 'double',
+        indent: 'tab',
+        commaDangle: 'always-multiline',
+        braceStyle: '1tbs',
+      },
+    },
+  },
 })

@@ -1,9 +1,10 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { ClientsModule, Transport } from '@nestjs/microservices';
+import { Module } from '@nestjs/common'
+import { ClientsModule, Transport } from '@nestjs/microservices'
 
-export const AUTH_SERVICE_RABBITMQ: string = 'rabbitmq_order_service';
+import { AppController } from './app.controller'
+import { AppService } from './app.service'
+
+export const AUTH_SERVICE_RABBITMQ: string = 'rabbitmq_order_service'
 
 @Module({
   imports: [

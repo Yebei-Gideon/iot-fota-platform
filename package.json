@@ -6,15 +6,35 @@
     "packages/*"
   ],
   "scripts": {
-    "dev:api": "bun --filter api start:dev",
-    "dev:ui": "bun --filter frontend dev",
+    "dev:api": "bun --filter @fota/api-gateway dev",
+    "dev:web": "bun --filter @fota/web dev",
     "dev": "bun run --filter '*' dev",
     "build": "bun run --filter '*' build",
-    "test": "bun test --workspaces"
+    "test": "bun test --workspaces",
+    "lint": "bun run --filter '*' lint",
+    "lint:fix": "bun run --filter '*' lint:fix",
+    "prepare": "husky"
   },
   "devDependencies": {
-    "@types/bun": "latest",
-    "bun-workspaces": "^1.1.2",
-    "typescript": "^6.0.2"
+    "@types/bun": "^1.3.14",
+    "@types/node": "^26.1.1",
+    "bun-workspaces": "^1.12.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.8",
+    "typescript": "^6.0.3"
+  },
+  "resolutions": {
+    "listr2": "^10.2.2"
+  },
+  "lint-staged": {
+    "apps/api-gateway/src/**/*.ts": [
+      "bun --cwd apps/api-gateway lint:fix"
+    ],
+    "apps/web/**/*.{ts,vue}": [
+      "bun --cwd apps/web lint:fix"
+    ],
+    "packages/**/*.ts": [
+      "eslint --fix"
+    ]
   }
 }

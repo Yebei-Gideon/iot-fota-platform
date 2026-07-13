@@ -1,24 +1,25 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-	"resolvePackageJsonExports": true,
-	"declaration": true,
-	"removeComments": true,
-	"sourceMap": true,
-	"noImplicitAny": true,
-	"strictBindCallApply": true,
-	// allow file generation
-	"noEmit": false,
-	"rootDir": "./src",
-	"outDir": "./dist",
-	//	"outDir": "../../dist/apps/api-gateway",
-	"paths": {
-	  "@/*": [
-		"./src/*"
-	  ]
-	}
+    "rootDir": "./src",
+    //	"outDir": "../../dist/apps/api-gateway",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    },
+    "resolvePackageJsonExports": true,
+    "strictBindCallApply": true,
+    "noImplicitAny": true,
+    "declaration": true,
+    // allow file generation
+    "noEmit": false,
+    "outDir": "./dist",
+    "removeComments": true,
+    "sourceMap": true
   },
   "include": [
-	"src/**/*"
+    "src/**/*",
+    "eslint.config.ts"
   ]
 }
