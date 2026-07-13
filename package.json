@@ -20,19 +20,21 @@
     "@types/bun": "^1.3.14",
     "@types/node": "^26.1.1",
     "bun-workspaces": "^1.12.0",
+    "eslint": "^10.7.0",
     "husky": "^9.1.7",
+    "jiti": "^2.7.0",
     "lint-staged": "^17.0.8",
     "typescript": "^6.0.3"
   },
   "lint-staged": {
     "apps/api-gateway/src/**/*.ts": [
-      "bun --cwd apps/api-gateway lint:fix"
+      "bunx --bun eslint --config packages/configs/eslint.config.ts --fix"
     ],
     "apps/web/**/*.{ts,vue}": [
-      "bun --cwd apps/web lint:fix"
+      "bunx --bun eslint --config packages/configs/eslint.config.ts --fix"
     ],
     "packages/**/*.ts": [
-      "eslint --fix"
+      "bunx --bun eslint --config packages/configs/eslint.config.ts --fix"
     ]
   }
 }
