@@ -12,7 +12,8 @@
     "debug": "bun --inspect-brk run src/main.ts",
     "start": "bun run dist/main.js",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@fota/types": "workspace:*",
@@ -44,11 +45,5 @@
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^6.0.3"
-  },
-  "resolutions": {
-    "@typescript-eslint/eslint-plugin": "^8.24.0",
-    "@typescript-eslint/parser": "^8.24.0",
-    "@typescript-eslint/typescript-estree": "^8.24.0",
-    "@typescript-eslint/utils": "^8.24.0"
   }
 }

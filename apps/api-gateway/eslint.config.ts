@@ -7,7 +7,7 @@ export default antfu({
     tsconfigPath: './tsconfig.json',
   },
   // Automatically ignores JSON tab formats or built artifacts
-  ignores: ['**/tsconfig.json', 'dist/**/*'],
+  ignores: ['**/tsconfig.json', 'dist/**/*', 'eslint.config.ts'],
 }, {
   // Global block
   plugins: {

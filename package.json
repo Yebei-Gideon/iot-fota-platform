@@ -13,6 +13,7 @@
     "test": "bun test --workspaces",
     "lint": "bun run --filter '*' lint",
     "lint:fix": "bun run --filter '*' lint:fix",
+    "typecheck": "bun run --filter '*' typecheck",
     "prepare": "husky"
   },
   "devDependencies": {

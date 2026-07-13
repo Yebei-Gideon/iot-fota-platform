@@ -1,1 +1,2 @@
-bunx lint-staged
+export PATH="node_modules/.bin:$PATH"
+npx --no-install lint-staged
