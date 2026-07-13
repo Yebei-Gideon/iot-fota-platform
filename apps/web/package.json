@@ -6,12 +6,12 @@
   "license": "MIT",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
-    "preview": "nuxt preview",
+    "dev": "nuxt dev --bun",
+    "preview": "bun run .output/server/index.mjs",
     "postinstall": "nuxt prepare",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "typecheck": "vue-tsc --noEmit"
+    "lint": "eslint . --cache",
+    "lint:fix": "eslint . --cache --fix",
+    "typecheck": "vue-tsc --noEmit --incremental"
   },
   "dependencies": {
     "@iconify-json/lucide": "^1.2.117",

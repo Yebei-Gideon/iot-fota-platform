@@ -7,13 +7,13 @@
   "author": "",
   "license": "MIT",
   "scripts": {
-    "build": "bun build src/main.ts --outdir ./dist --target=node --external @nestjs/* --external class-validator --external class-transformer --external kafkajs --external nats --external @grpc/* --external mqtt",
-    "dev": "bun --watch run src/main.ts",
-    "debug": "bun --inspect-brk run src/main.ts",
-    "start": "bun run dist/main.js",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "typecheck": "tsc --noEmit"
+    "build": "bun build src/main.ts --minify --target=node --external @nestjs/* --external class-validator --external class-transformer --external kafkajs --external nats --external @grpc/* --external mqtt --outfile ./dist/main.js",
+    "dev": "bun --watch src/main.ts",
+    "debug": "bun --inspect src/main.ts",
+    "start": "bun run ./dist/main.js",
+    "lint": "eslint . --cache",
+    "lint:fix": "eslint . --cache --fix",
+    "typecheck": "tsc --noEmit --incremental"
   },
   "dependencies": {
     "@fota/types": "workspace:*",
@@ -24,7 +24,8 @@
     "amqp-connection-manager": "^5.0.0",
     "amqplib": "^2.0.1",
     "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.2"
+    "rxjs": "^7.8.2",
+    "tslib": "^2.8.1"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^9.1.0",
