@@ -1,3 +1,4 @@
 [submodule "supabase_docker"]
 	path = docker/.supabase-root
 	url = https://github.com/supabase/supabase.git
+	ignore = all
