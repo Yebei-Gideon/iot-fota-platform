@@ -43,7 +43,7 @@
         trailingIcon: ['transition-transform duration-200', open ? 'rotate-180' : undefined].filter(Boolean).join(' '),
       }"
       :class="[open && 'bg-primary/15']"
-      class="-mb-1.5 font-semibold rounded-full truncate"
+      class="-mb-1.5 truncate rounded-full font-semibold"
     />
   </UDropdownMenu>
 </template>

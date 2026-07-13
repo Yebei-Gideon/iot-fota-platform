@@ -12,6 +12,8 @@
   "devDependencies": {
     "@antfu/eslint-config": "^9.1.0",
     "@types/bun": "^1.3.14",
-    "eslint-plugin-simple-import-sort": "^13.0.0"
+    "eslint-plugin-format": "^2.0.1",
+    "eslint-plugin-simple-import-sort": "^13.0.0",
+    "eslint-plugin-tailwindcss": "^4.2.0"
   }
 }

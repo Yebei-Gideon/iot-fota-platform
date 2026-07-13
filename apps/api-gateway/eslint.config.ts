@@ -6,6 +6,9 @@ export default createBaseConfig({
     },
 }).append(
     {
+        ignores: ['eslint.config.ts'],
+    },
+    {
         rules: {
             'no-console': 'off',
             'no-useless-constructor': 'off',

@@ -28,6 +28,26 @@
     "typescript": "^6.0.3"
   },
   "lint-staged": {
-    "**/*.{ts,vue}": "bun lint:fix"
+    "apps/api-gateway/src/**/*.ts": [
+      "bun --cwd apps/api-gateway lint:fix"
+    ],
+    "apps/web/**/*.{ts,vue,css}": [
+      "bun --cwd apps/web lint:fix"
+    ],
+    "packages/configs/**/*.ts": [
+      "bun --cwd packages/configs lint:fix"
+    ],
+    "packages/contracts/**/*.ts": [
+      "bun --cwd packages/contracts lint:fix"
+    ],
+    "packages/database/**/*.ts": [
+      "bun --cwd packages/database lint:fix"
+    ],
+    "packages/dtos/**/*.ts": [
+      "bun --cwd packages/dtos lint:fix"
+    ],
+    "packages/types/**/*.ts": [
+      "bun --cwd packages/types lint:fix"
+    ]
   }
 }
