@@ -1,5 +1,6 @@
 {
   "name": "iot-fota-platform",
+  "type": "module",
   "private": true,
   "workspaces": [
     "apps/*",
@@ -23,18 +24,10 @@
     "eslint": "^10.7.0",
     "husky": "^9.1.7",
     "jiti": "^2.7.0",
-    "lint-staged": "^17.0.8",
+    "lint-staged": "^15.4.3",
     "typescript": "^6.0.3"
   },
   "lint-staged": {
-    "apps/api-gateway/src/**/*.ts": [
-      "bunx --bun eslint --config packages/configs/eslint.config.ts --fix"
-    ],
-    "apps/web/**/*.{ts,vue}": [
-      "bunx --bun eslint --config packages/configs/eslint.config.ts --fix"
-    ],
-    "packages/**/*.ts": [
-      "bunx --bun eslint --config packages/configs/eslint.config.ts --fix"
-    ]
+    "**/*.{ts,vue}": "bun lint:fix"
   }
 }

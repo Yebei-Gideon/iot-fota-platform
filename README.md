@@ -54,5 +54,5 @@ iot-fota-platform/
 
 ## Deployments Link
 
-- [apps/web live at fotaweb-beta.up.railway.app](#)
-- [app/api-gateway live at fota-api-gateway-beta.up.railway.app](#)
+- [apps/web live at fotaweb-beta.up.railway.app](https://github.com)
+- [app/api-gateway live at fota-api-gateway-beta.up.railway.app](https://github.com)

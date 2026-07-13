@@ -1,3 +1,37 @@
 {
-  "extends": "../../tsconfig.base.json"
+  "compilerOptions": {
+    "target": "esnext",
+    "lib": [
+      "ESNext",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "moduleDetection": "force",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "checkJs": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "exactOptionalPropertyTypes": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
+    // Some stricter flags (disabled by default)
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    //	"incremental": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "noUncheckedSideEffectImports": true
+  }
 }

@@ -1,5 +1,5 @@
 {
-  "extends": "../../tsconfig.base.json",
+  "extends": "@fota/configs/tsconfig.json",
   "compilerOptions": {
     "rootDir": "./src",
     "paths": {
