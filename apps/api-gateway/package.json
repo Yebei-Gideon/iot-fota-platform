@@ -7,7 +7,7 @@
   "author": "",
   "license": "MIT",
   "scripts": {
-    "build": "nest build",
+    "build": "bun build src/main.ts --outdir ./dist --target=node --external @nestjs/* --external class-validator --external class-transformer --external kafkajs --external nats --external @grpc/* --external mqtt",
     "dev": "bun --watch run src/main.ts",
     "debug": "bun --inspect-brk run src/main.ts",
     "start": "bun run dist/main.js",
