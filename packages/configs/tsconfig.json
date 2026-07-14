@@ -1,10 +1,14 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "es2024",
     "lib": [
       "ESNext",
       "DOM",
       "DOM.Iterable"
+    ],
+    "types": [
+      "bun",
+      "node"
     ],
     "moduleDetection": "force",
     "emitDecoratorMetadata": true,
