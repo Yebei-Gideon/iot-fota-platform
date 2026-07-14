@@ -1,0 +1,9 @@
+# Configuration and Environment
+.env
+.env.*
+!.env.example
+
+# Runtime Data and Logs
+data/
+log/
+*.log

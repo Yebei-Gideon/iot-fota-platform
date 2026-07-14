@@ -1,0 +1,17 @@
+# Handle line endings automatically for text files
+* text=auto
+
+# Enforce Unix line endings (LF) for all shell scripts
+*.sh text eol=lf
+
+# Explicitly handle common project configurations
+*.json text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+.env* text eol=lf
+
+# Treat cryptographic assets as binary configurations
+*.crt binary
+*.key binary
+*.csr binary
+*.srl binary

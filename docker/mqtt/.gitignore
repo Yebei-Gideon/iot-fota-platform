@@ -1,0 +1,19 @@
+# Security and Credentials
+certs/
+*.key
+*.crt
+*.csr
+*.srl
+*.pem
+
+# Configuration and Environment
+.env
+.env.*
+config/
+!config/mosquitto.conf
+!.env.example
+
+# Runtime Data and Logs
+data/
+log/
+*.log
