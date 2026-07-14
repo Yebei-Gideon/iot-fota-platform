@@ -9,12 +9,12 @@
   "scripts": {
     "dev:api": "bun --filter @fota/api-gateway dev",
     "dev:web": "bun --filter @fota/web dev",
-    "dev": "bun run --filter '*' dev",
-    "build": "bun run --filter '*' build",
+    "dev": "bun --filter '*' --parallel --output-style grouped dev",
+    "build": "bun --filter '*' --parallel --output-style grouped build",
+    "lint": "bun --filter '*' --parallel --output-style grouped lint",
+    "lint:fix": "bun --filter '*' --parallel --output-style grouped lint:fix",
+    "typecheck": "bun --filter '*' --parallel --output-style grouped typecheck",
     "test": "bun test --workspaces",
-    "lint": "bun run --filter '*' lint",
-    "lint:fix": "bun run --filter '*' lint:fix",
-    "typecheck": "bun run --filter '*' typecheck",
     "prepare": "husky"
   },
   "devDependencies": {
