@@ -17,6 +17,8 @@
   },
   "dependencies": {
     "@fota/configs": "workspace:*",
+    "@fota/database": "workspace:*",
+    "@fota/logger": "workspace:*",
     "@fota/types": "workspace:*",
     "@nestjs/common": "^11.1.28",
     "@nestjs/core": "^11.1.28",
