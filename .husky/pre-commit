@@ -1,2 +1,19 @@
-export PATH="node_modules/.bin:$PATH"
-npx --no-install lint-staged
+#!/bin/sh
+
+# Add common global binary locations to PATH for IDEs/Git clients
+export PATH="$HOME/.bun/bin:$HOME/.local/share/pnpm:/usr/local/bin:/usr/bin:$PATH"
+
+# Detect the best available runner and execute lint-staged
+if command -v bunx >/dev/null 2>&1; then
+  bunx --bun lint-staged
+elif command -v pnpm >/dev/null 2>&1; then
+  pnpm dlx lint-staged
+elif command -v npx >/dev/null 2>&1; then
+  npx --no-install lint-staged
+elif command -v yarn >/dev/null 2>&1; then
+  yarn dlx lint-staged
+else
+  echo "Error: No JavaScript package manager (Bun, npm, pnpm, Yarn) found in your PATH."
+  echo "Please install Bun or Node.js to commit changes."
+  exit 1
+fi
