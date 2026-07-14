@@ -1,4 +1,9 @@
 <script setup>
+const { info } = useLogger()
+
+onMounted(() => {
+  info('App mounted successfully!')
+})
 useHead({
   meta: [
     { name: 'viewport', content: 'width=device-width, initial-scale=1' },

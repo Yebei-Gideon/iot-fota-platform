@@ -13,10 +13,10 @@ export default defineNuxtPlugin(() => {
       context?: string,
       stack?: string
     ) {
-      // 1. Still print in the browser console first
+      // Still print in the browser console first
       originalPrint.call(this, level, message, context, stack)
 
-      // 2. Safely dispatch to our terminal proxy endpoint
+      // Safely dispatch to our terminal proxy endpoint
       const activeContext = context || (this as any).context
 
       // Use a background fetch so we don't block the browser UI thread

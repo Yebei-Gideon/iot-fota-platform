@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@fota/configs": "workspace:*",
+    "@fota/logger": "workspace:*",
     "@fota/types": "workspace:*",
     "@iconify-json/lucide": "^1.2.117",
     "@iconify-json/simple-icons": "^1.2.90",
