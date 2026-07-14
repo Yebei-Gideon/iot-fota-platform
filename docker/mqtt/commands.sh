@@ -54,6 +54,9 @@ sudo find ./config ./log ./data ./certs -type f -exec chmod 600 {} \;
 sudo chmod 755 ./certs ./certs/ca ./certs/server
 sudo chmod 644 ./certs/ca/ca.crt ./certs/server/server.crt
 
+# grant read permissions to all users while keeping Mosquitto as the owner:
+sudo chmod 644 ./config/mosquitto.conf
+
 # ==============================================================================
 # 4. DOCKER & USER PROVISIONING
 # ==============================================================================

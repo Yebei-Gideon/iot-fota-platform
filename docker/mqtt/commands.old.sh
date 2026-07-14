@@ -34,6 +34,10 @@ sudo chown -R 1883:1883 ./config ./log ./data ./certs
 # Make sure permissions allow reading and writing
 sudo chmod -R 755 ./config ./log ./data ./certs
 
+# grant read permissions to all users while keeping Mosquitto as the owner:
+sudo chmod -R 755 ./docker/mqtt/config ./docker/mqtt/log ./docker/mqtt/data
+sudo chmod 644 ./docker/mqtt/config/mosquitto.conf
+
 
 # Ensure certificates are readable (but the key should stay private)
 chmod -R 755 ./certs
