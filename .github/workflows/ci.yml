@@ -23,6 +23,10 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: Generate Prisma Client
+        env:
+          DATABASE_URL: 'postgresql://postgres.nodewave:postgres@localhost:6543/fotadevdb?pgbouncer=true'
+          DIRECT_URL: 'postgresql://postgres.nodewave:postgres@localhost:5432/fotadevdb'
+          SHADOW_DATABASE_URL: 'postgresql://postgres.nodewave:postgres@localhost:5432/fotashadowdb'
         run: bun --filter @fota/database db:generate
 
       - name: Lint
