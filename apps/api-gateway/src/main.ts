@@ -1,5 +1,3 @@
-import 'reflect-metadata'
-
 import { FotaLogger } from '@fota/logger'
 import { Logger, ValidationPipe } from '@nestjs/common'
 import { NestFactory } from '@nestjs/core'

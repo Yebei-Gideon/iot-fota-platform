@@ -7,7 +7,7 @@
   "author": "",
   "license": "MIT",
   "scripts": {
-    "build": "bun build src/main.ts --minify --target=node --external @nestjs/* --external class-validator --external class-transformer --external kafkajs --external nats --external @grpc/* --external mqtt --outfile ./dist/main.js",
+    "build": "nest build && tsc-alias -p tsconfig.build.json",
     "dev": "bun --watch src/main.ts",
     "debug": "bun --inspect src/main.ts",
     "start": "bun run ./dist/main.js",
@@ -51,6 +51,7 @@
     "ts-jest": "^29.4.11",
     "ts-loader": "^9.6.2",
     "ts-node": "^10.9.2",
+    "tsc-alias": "^1.9.1",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^6.0.3"
   }

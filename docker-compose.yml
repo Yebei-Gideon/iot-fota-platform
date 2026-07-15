@@ -1,3 +1,6 @@
 include:
   - path: ./docker/mqtt/docker-compose.yml
   - path: ./docker/rabbitmq/docker-compose.yml
+  - path: ./docker/supabase/docker-compose.yml
+  - path: ./docker/supabase/docker-compose.s3.yml
+  - path: ./apps/api-gateway/docker-compose.yml
