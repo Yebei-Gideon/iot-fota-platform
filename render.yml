@@ -4,13 +4,10 @@ services:
     runtime: docker
     name: fota-api-gateway
     repo: https://github.com/Yebei-Gideon/Secure-IoT-Firmware-Over-The-Air-Platform
-    rootDir: apps/api-gateway
+    rootDir: .
     healthCheckPath: /health
     plan: free
     branch: main
-    preDeployCommand: bun install && bun run db:generate && bun run db:migrate
-    buildCommand: bun install && bun run db:generate && bun run build:api-gateway
-    startCommand: bun run start:api-gateway
     envVars:
       - key: API_NAME
         sync: false
