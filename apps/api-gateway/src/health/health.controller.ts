@@ -8,9 +8,21 @@ import {
   PrismaHealthIndicator,
 } from '@nestjs/terminus'
 
+import { SystemHealthIndicator } from '@/health/system.health'
 import { PrismaService } from '@/prisma/prisma.service'
 
-import { SystemHealthIndicator } from './system.health'
+export interface HealthResponsePayload {
+  status?: string
+  info?: Record<string, any>
+  error?: Record<string, any>
+  details?: Record<string, any>
+  meta?: {
+    timestamp: string
+    latency_ms: number
+  }
+
+  [key: string]: any
+}
 
 @ApiTags('Health')
 @Controller('health')
@@ -141,9 +153,9 @@ export class HealthController {
     }
     catch (error: unknown) {
       if (error instanceof HttpException) {
-        const response = error.getResponse() as Record<string, any>
+        const response = error.getResponse() as HealthResponsePayload
         if (typeof response === 'object' && response !== null) {
-          response['meta'] = {
+          response.meta = {
             timestamp: new Date().toISOString(),
             latency_ms: Date.now() - startTime,
           }
