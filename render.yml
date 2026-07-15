@@ -1,0 +1,34 @@
+services:
+  # ##< API Gateway Service
+  - type: web
+    runtime: docker
+    name: fota-api-gateway
+    repo: https://github.com/Yebei-Gideon/Secure-IoT-Firmware-Over-The-Air-Platform
+    rootDir: apps/api-gateway
+    healthCheckPath: /health
+    plan: free
+    branch: main
+    preDeployCommand: bun install && bun run db:generate && bun run db:migrate
+    buildCommand: bun install && bun run db:generate && bun run build:api-gateway
+    startCommand: bun run start:api-gateway
+    envVars:
+      - key: API_NAME
+        sync: false
+      - key: API_DESCRIPTION
+        sync: false
+      - key: API_VERSION
+        sync: false
+      - key: API_URL
+        sync: false
+      - key: PORT
+        sync: false
+      - key: API_PREFIX
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: DIRECT_URL
+        sync: false
+      - key: SHADOW_DATABASE_URL
+        sync: false
+      - key: RABBITMQ_URL
+        sync: false

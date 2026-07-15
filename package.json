@@ -7,14 +7,18 @@
     "packages/*"
   ],
   "scripts": {
-    "dev:api": "bun --filter @fota/api-gateway dev",
+    "dev:api-gateway": "bun --filter @fota/api-gateway dev",
     "dev:web": "bun --filter @fota/web dev",
     "dev": "bun --filter '*' --parallel --output-style grouped dev",
     "build": "bun --filter '*' --parallel --output-style grouped build",
+    "build:api-gateway": "bun --filter @fota/api-gateway build",
+    "start:api-gateway": "bun --filter @fota/api-gateway start",
     "lint": "bun --filter '*' --parallel --output-style grouped lint",
     "lint:fix": "bun --filter '*' --parallel --output-style grouped lint:fix",
     "typecheck": "bun --filter '*' --parallel --output-style grouped typecheck",
-    "test": "bun test --workspaces",
+    "test": "bun test --if-present --workspaces",
+    "db:generate": "bun --filter @fota/database db:generate",
+    "db:migrate": "bun --filter @fota/database db:migrate",
     "prepare": "husky"
   },
   "devDependencies": {
