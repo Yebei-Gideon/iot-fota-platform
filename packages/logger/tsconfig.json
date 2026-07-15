@@ -1,11 +1,18 @@
 {
   "extends": "@fota/configs/tsconfig.json",
   "compilerOptions": {
-    "baseUrl": ".",
+    "outDir": "./dist",
+    "declaration": true,
     "paths": {
       "@/*": ["./*"]
     }
   },
-  "include": ["index.ts", "**/*"],
-  "exclude": ["node_modules"]
+  "include": [
+    "index.ts",
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }

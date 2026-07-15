@@ -1,6 +1,3 @@
-/* eslint-disable no-console */
-export type LogLevel = 'log' | 'info' | 'error' | 'warn' | 'debug' | 'verbose'
-
 const COLORS = {
   reset: '\x1B[0m',
   bold: '\x1B[1m',
@@ -13,8 +10,7 @@ const COLORS = {
   cyan: '\x1B[36m',
   blue: '\x1B[34m',
 }
-
-const LEVEL_COLORS: Record<LogLevel, string> = {
+const LEVEL_COLORS = {
   log: COLORS.green,
   info: COLORS.blue,
   error: COLORS.red,
@@ -22,24 +18,20 @@ const LEVEL_COLORS: Record<LogLevel, string> = {
   debug: COLORS.magenta,
   verbose: COLORS.cyan,
 }
-
 let lastTimestamp = Date.now()
-
-function getProcessId(): string {
+function getProcessId() {
   if (typeof globalThis !== 'undefined' && 'process' in globalThis) {
-    return String((globalThis as any).process.pid || '')
+    return String(globalThis.process.pid || '')
   }
   return 'browser'
 }
-
 export class FotaLogger {
-  private readonly context: string
-
-  constructor(context: string = '') {
+  context
+  constructor(context = '') {
     this.context = context
   }
 
-  private static formatTimestamp(): string {
+  static formatTimestamp() {
     const now = new Date()
     return now.toLocaleString('en-US', {
       year: 'numeric',
@@ -52,104 +44,98 @@ export class FotaLogger {
     })
   }
 
-  private static getMsPassed(): string {
+  static getMsPassed() {
     const now = Date.now()
     const diff = now - lastTimestamp
     lastTimestamp = now
     return `+${diff}ms`
   }
 
-  static log(...args: any[]) {
+  static log(...args) {
     new FotaLogger().log(...args)
   }
 
-  static info(...args: any[]) {
+  static info(...args) {
     new FotaLogger().info(...args)
   }
 
-  static warn(...args: any[]) {
+  static warn(...args) {
     new FotaLogger().warn(...args)
   }
 
-  static debug(...args: any[]) {
+  static debug(...args) {
     new FotaLogger().debug(...args)
   }
 
-  static verbose(...args: any[]) {
+  static verbose(...args) {
     new FotaLogger().verbose(...args)
   }
 
-  static error(...args: any[]) {
+  static error(...args) {
     new FotaLogger().error(...args)
   }
 
-  private static colorizeObject(obj: any): string {
+  static colorizeObject(obj) {
     const jsonString = JSON.stringify(obj, null, 2)
-    return jsonString.replace(
-      /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+-]?\d+)?)/g,
-      (match) => {
-        let cls: string
-        if (match.startsWith('"')) {
-          if (match.endsWith(':')) {
-            cls = COLORS.cyan
-          }
-          else {
-            cls = COLORS.yellow
-          }
-        }
-        else if (/true|false/.test(match)) {
-          cls = COLORS.magenta
-        }
-        else if (/null/.test(match)) {
-          cls = COLORS.red
+    return jsonString.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+-]?\d+)?)/g, (match) => {
+      let cls
+      if (match.startsWith('"')) {
+        if (match.endsWith(':')) {
+          cls = COLORS.cyan
         }
         else {
-          cls = COLORS.blue
+          cls = COLORS.yellow
         }
-        return `${cls}${match}${COLORS.reset}`
-      },
-    )
+      }
+      else if (/true|false/.test(match)) {
+        cls = COLORS.magenta
+      }
+      else if (/null/.test(match)) {
+        cls = COLORS.red
+      }
+      else {
+        cls = COLORS.blue
+      }
+      return `${cls}${match}${COLORS.reset}`
+    })
   }
 
   // Use rest operators to bypass NestJS standard parameter bindings
-  log(...args: any[]) {
+  log(...args) {
     this.print('log', args)
   }
 
-  info(...args: any[]) {
+  info(...args) {
     this.print('info', args)
   }
 
-  warn(...args: any[]) {
+  warn(...args) {
     this.print('warn', args)
   }
 
-  debug(...args: any[]) {
+  debug(...args) {
     this.print('debug', args)
   }
 
-  verbose(...args: any[]) {
+  verbose(...args) {
     this.print('verbose', args)
   }
 
-  error(...args: any[]) {
+  error(...args) {
     this.print('error', args)
   }
 
-  private print(level: LogLevel, args: any[]) {
+  print(level, args) {
     let message = ''
     let activeContext = this.context
-    let attachedObject: any = null
-
+    let attachedObject = null
     // Parse incoming arguments strictly by actual data type
     const strings = args.filter(arg => typeof arg === 'string')
     const objects = args.filter(arg => typeof arg === 'object' && arg !== null)
-
     // Handle standard execution: logger.log("description", { object })
     if (strings.length > 0) {
       // Clean NestJS framework auto-generated string noise
       const cleanStrings = strings.filter(s => s !== '[object Object]')
-
       if (cleanStrings.length > 0) {
         message = cleanStrings[0] ?? ''
         // If NestJS passed a class context name as a second string argument
@@ -162,30 +148,24 @@ export class FotaLogger {
         message = 'Log'
       }
     }
-
     if (objects.length > 0) {
       attachedObject = objects[0]
     }
-
     // Fallback: If no strings found but object exists
     if (!message && attachedObject) {
       message = 'Object Payload'
     }
-
     const timestamp = FotaLogger.formatTimestamp()
     const pidStr = `${COLORS.dim}${getProcessId()}${COLORS.reset}`
     const levelStr = `${LEVEL_COLORS[level]}${COLORS.bold}${level.toUpperCase().padEnd(7)}${COLORS.reset}`
     const contextStr = activeContext ? `${COLORS.yellow}[${activeContext}]${COLORS.reset} ` : ''
     const msPassed = `${COLORS.yellow}${FotaLogger.getMsPassed()}${COLORS.reset}`
-
     let formattedMessage = message
     if (attachedObject) {
       formattedMessage = `${formattedMessage}\n${FotaLogger.colorizeObject(attachedObject)}`
     }
-
     const prefix = `${COLORS.green}[FOTA] ${pidStr}  - ${COLORS.gray}${timestamp}${COLORS.reset}   ${levelStr} `
     console.log(`${prefix}${contextStr}${formattedMessage} ${msPassed}`)
-
     // Error special track for stacks
     if (level === 'error' && strings.length > 1) {
       console.error(`${COLORS.red}${strings[1]}${COLORS.reset}`)
