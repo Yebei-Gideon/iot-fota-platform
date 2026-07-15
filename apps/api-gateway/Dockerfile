@@ -13,6 +13,10 @@ COPY packages ./packages
 COPY apps/api-gateway ./apps/api-gateway
 COPY apps ./apps
 
+ENV DATABASE_URL="postgresql://dummy:dummy@localhost:5432/dummy"
+ENV DIRECT_URL="postgresql://dummy:dummy@localhost:5432/dummy"
+ENV SHADOW_DATABASE_URL="postgresql://dummy:dummy@localhost:5432/dummy"
+
 # Install all dependencies (dev + prod) for the build process
 RUN bun install --frozen-lockfile --ignore-scripts
 
