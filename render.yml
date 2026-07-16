@@ -8,6 +8,10 @@ services:
     healthCheckPath: /health
     plan: free
     branch: main
+    buildFilter:
+      paths:
+        - apps/api-gateway/**/*
+        - packages/**/*
     envVars:
       - key: API_NAME
         sync: false
