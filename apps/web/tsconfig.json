@@ -1,4 +1,16 @@
 {
+  "extends": "@fota/configs/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@fota/logger": [
+        "../../packages/logger/index.ts"
+      ],
+      "@fota/types": [
+        "../../packages/types/index.ts"
+      ]
+    }
+  },
   "references": [
     { "path": "./.nuxt/tsconfig.app.json" },
     { "path": "./.nuxt/tsconfig.server.json" },

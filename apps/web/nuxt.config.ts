@@ -17,6 +17,20 @@ export default defineNuxtConfig({
 
   compatibilityDate: '2025-01-15',
 
+  nitro: {
+    externals: {
+      inline: ['@fota/logger', '@fota/types'],
+    },
+  },
+
+  vite: {
+    build: {
+      commonjsOptions: {
+        include: [/packages/, /node_modules/],
+      },
+    },
+  },
+
   eslint: {
     config: {
       standalone: false,
