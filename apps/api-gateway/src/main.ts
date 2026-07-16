@@ -31,7 +31,12 @@ async function bootstrap(): Promise<number> {
   })
 
   // Enable explicit API security practices
-  app.enableCors()
+  app.enableCors({
+    origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    credentials: true,
+    allowedHeaders: 'Content-Type,Authorization,Accept',
+  })
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }))
 
   // Gracefully handles container shutdown processes (K8s / PM2 / Docker)
