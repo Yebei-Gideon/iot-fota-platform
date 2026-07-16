@@ -54,5 +54,5 @@ iot-fota-platform/
 
 ## Deployments Link
 
-- [apps/web live at fotaweb-beta.up.railway.app](https://github.com)
-- [app/api-gateway live at fota-api-gateway-beta.up.railway.app](https://github.com)
+- [apps/web live at https://secure-iot-fota-platform-swart.vercel.app](https://secure-iot-fota-platform-swart.vercel.app)
+- [app/api-gateway live at https://fota-api-gateway.onrender.com](https://fota-api-gateway.onrender.com)
