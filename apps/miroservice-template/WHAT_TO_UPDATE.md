@@ -1,4 +1,0 @@
-- name inside package.json
-- main.ts
-- constants
-- app.module
