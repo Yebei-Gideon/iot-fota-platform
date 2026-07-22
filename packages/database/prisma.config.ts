@@ -12,7 +12,7 @@ const url = DIRECT_URL as string
 const shadowDatabaseUrl = SHADOW_DATABASE_URL as string
 
 export default defineConfig({
-  schema: 'prisma/schemas.prisma',
+  schema: 'prisma/schema.prisma',
   migrations: {
     path: 'prisma/migrations',
   },
