@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev --bun",
+    "dev": "nuxt dev",
     "preview": "bun run .output/server/index.mjs",
     "postinstall": "nuxt prepare",
     "lint": "eslint . --cache",

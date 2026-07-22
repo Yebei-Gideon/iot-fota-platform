@@ -1,72 +1,55 @@
+import type { LogContext } from '@fota/logger'
 import { FotaLogger } from '@fota/logger'
 import { getCurrentInstance } from 'vue'
 
-export type LoggerOptions = string | { context: string }
+export type LoggerOptions = LogContext | { context: LogContext }
 
 export function useLogger(options?: LoggerOptions) {
-  let context = 'NuxtApp'
+  let defaultContext: LogContext = 'NuxtApp'
 
-  // Resolve context (string, options object, or fallback to auto-detection)
-  if (typeof options === 'string') {
-    context = options
+  // Resolve context (string, class/object context, or Vue component auto-detection)
+  if (typeof options === 'string' || typeof options === 'function') {
+    defaultContext = options
   }
-  else if (options?.context) {
-    context = options.context
+  else if (options && typeof options === 'object' && 'context' in options && options.context) {
+    defaultContext = options.context
   }
   else {
-    // Auto-detect Vue component filename (e.g., "login.vue" -> "login")
+    // Auto-detect Vue component name (e.g., "Login.vue" -> "Login")
     const instance = getCurrentInstance()
     const componentName = instance?.type.__name || instance?.type.name
     if (componentName) {
-      context = componentName
+      defaultContext = componentName.toUpperCase()
     }
   }
 
-  const logger = new FotaLogger(context)
+  const logger = new FotaLogger(defaultContext)
 
-  const logToTerminal = (level: string, message: any, stack?: string, overrideCtx?: string) => {
-    // Send logs during development in client browser
-    if (import.meta.dev && import.meta.client) {
-      $fetch('/api/dev-log', {
-        method: 'POST',
-        body: {
-          level,
-          message,
-          context: overrideCtx || context,
-          stack,
-        },
-      }).catch(() => {
-        // Silently catch network failures if dev server restarts
-      })
-    }
-  }
-
-  // Return both the raw instance and destructured helper methods with terminal synchronization
   return {
     logger,
-    log: (message: any, ctx?: string) => {
-      logger.log(message, ctx)
-      logToTerminal('log', message, undefined, ctx)
+
+    log: (message: unknown, context?: LogContext, ...optionalParams: unknown[]) => {
+      logger.log(message, context, ...optionalParams)
     },
-    info: (message: any, ctx?: string) => {
-      logger.info(message, ctx)
-      logToTerminal('info', message, undefined, ctx)
+
+    info: (message: unknown, context?: LogContext, ...optionalParams: unknown[]) => {
+      logger.info(message, context, ...optionalParams)
     },
-    warn: (message: any, ctx?: string) => {
-      logger.warn(message, ctx)
-      logToTerminal('warn', message, undefined, ctx)
+
+    warn: (message: unknown, context?: LogContext, ...optionalParams: unknown[]) => {
+      logger.warn(message, context, ...optionalParams)
     },
-    error: (message: any, stack?: string, ctx?: string) => {
-      logger.error(message, stack, ctx)
-      logToTerminal('error', message, stack, ctx)
+
+    error: (message: unknown, context?: LogContext, ...optionalParams: unknown[]) => {
+      logger.error(message, context, ...optionalParams)
     },
-    debug: (message: any, ctx?: string) => {
-      logger.debug(message, ctx)
-      logToTerminal('debug', message, undefined, ctx)
+
+    debug: (message: unknown, context?: LogContext, ...optionalParams: unknown[]) => {
+      logger.debug(message, context, ...optionalParams)
     },
-    verbose: (message: any, ctx?: string) => {
-      logger.verbose(message, ctx)
-      logToTerminal('verbose', message, undefined, ctx)
+
+    verbose: (message: unknown, context?: LogContext, ...optionalParams: unknown[]) => {
+      logger.verbose(message, context, ...optionalParams)
     },
   }
 }
