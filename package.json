@@ -2,24 +2,20 @@
   "name": "iot-fota-platform",
   "type": "module",
   "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
   "scripts": {
-    "dev:api-gateway": "bun --filter @fota/api-gateway dev",
-    "dev:web": "bun --filter @fota/web dev",
-    "dev": "bun --filter '*' --parallel --output-style grouped dev",
     "build": "bun --filter '*' --parallel --output-style grouped build",
-    "build:api-gateway": "bun --filter @fota/api-gateway build",
-    "start:api-gateway": "bun --filter @fota/api-gateway start",
+    "build:api": "bun --filter '@fota/api' build",
+    "build:packages": "bun --filter './packages/*' --parallel --output-style grouped build",
+    "build:web": "bun --filter '@fota/web' build",
+    "db:generate": "bun --filter '@fota/database' db:generate",
+    "db:migrate": "bun --filter '@fota/database' db:migrate",
+    "dev": "bun --filter '*' --parallel --output-style grouped dev",
     "lint": "bun --filter '*' --parallel --output-style grouped lint",
     "lint:fix": "bun --filter '*' --parallel --output-style grouped lint:fix",
-    "typecheck": "bun --filter '*' --parallel --output-style grouped typecheck",
+    "prepare": "husky",
     "test": "bun test --if-present --workspaces",
-    "db:generate": "bun --filter @fota/database db:generate",
-    "db:migrate": "bun --filter @fota/database db:migrate",
-    "prepare": "husky"
+    "typecheck": "bun --filter '*' --parallel --output-style grouped typecheck",
+    "watch:packages": "bun --filter './packages/*' --parallel --output-style grouped watch"
   },
   "devDependencies": {
     "@types/bun": "^1.3.14",
@@ -30,5 +26,9 @@
     "jiti": "^2.7.0",
     "lint-staged": "^17.1.1",
     "typescript": "^6.0.3"
-  }
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
 }

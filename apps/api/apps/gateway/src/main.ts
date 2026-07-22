@@ -8,46 +8,17 @@ import type { NestExpressApplication } from '@nestjs/platform-express'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import { json, urlencoded } from 'express'
 
-// Use a single FotaLogger instance configured with the Gateway service context
 const logger = new FotaLogger(SERVICES.GATEWAY.name)
-logger.log(logger)
-// tests
-// log complex object
-logger.log({ message: 'Test log', data: { key: 'value' } }, 'TestContext')
-// log simple string
-logger.info('Test info message', 'TestContext')
-// log error with stack trace
-logger.error(new Error('Test error'), 'TestContext')
-// log warning
-logger.warn('Test warning', 'TestContext')
-// log debug message
-logger.debug('Test debug message', 'TestContext')
-// log verbose message
-logger.verbose('Test verbose message', 'TestContext')
-// log with additional parameters
-logger.log('Test log with additional params', 'TestContext', { param1: 'value1' }, [1, 2, 3])
-
-// log with context as a class constructor
-class TestClass {
-}
-
-logger.info('Test info with class context', TestClass.name)
-// log with template literal message
-const userId = 123
-logger.debug(`User ID is ${userId}`, 'TestContext')
 
 async function bootstrap(): Promise<number> {
   const app = await NestFactory.create<NestExpressApplication>(
     GatewayModule,
     {
-      // Pass the instance directly to handle startup logs
       logger,
     },
   )
-  // Register logger globally so all NestJS modules/resolvers use it
   app.useLogger(logger)
 
-  // Read configurations directly using NestJS ConfigService
   const configService = app.get(ConfigService)
 
   const globalPrefix = configService.get<string>('GLOBAL_PREFIX', 'api')

@@ -55,31 +55,31 @@ const LEVEL_THEMES: Record<LogLevel, LevelTheme> = {
  * Colorizes URLs, API routes (/api/v1), HTTP methods (GET/POST), quoted strings, and numbers.
  */
 function highlightMessage(text: string, defaultColor: ColorKey): string {
-  // 1. URLs (http://localhost:3030/...) -> Underline + Bright Cyan
+  // URLs (http://localhost:3030/...) -> Underline + Bright Cyan
   let result = text.replace(
     /(https?:\/\/\S+)/g,
     url => style(['underline', 'brightCyan'], url),
   )
 
-  // 2. HTTP Methods (GET, POST, PUT, DELETE, PATCH, OPTIONS) -> Bold Bright Yellow
+  // HTTP Methods (GET, POST, PUT, DELETE, PATCH, OPTIONS) -> Bold Bright Yellow
   result = result.replace(
     /\b(GET|POST|PUT|DELETE|PATCH|OPTIONS|HEAD)\b/g,
     method => style(['bold', 'brightYellow'], method),
   )
 
-  // 3. API Routes & Endpoints (e.g. /api/v1, /health, /docs) -> Bold Magenta
+  // API Routes & Endpoints (e.g. /api/v1, /health, /docs) -> Bold Magenta
   result = result.replace(
     /(\/[\w\-~]+(?:\/[\w\-~]*)*)/g,
     route => style(['bold', 'brightMagenta'], route),
   )
 
-  // 4. Quoted String Literals ('...' or "...") -> Bright Green
+  // Quoted String Literals ('...' or "...") -> Bright Green
   result = result.replace(
     /(["'])(?:\\.|[^\\])*?\1/g,
     str => colorize('brightGreen', str),
   )
 
-  // 5. Numbers -> Bright Yellow
+  // Numbers -> Bright Yellow
   result = result.replace(
     /\b(\d+)\b/g,
     num => colorize('yellow', num),
@@ -103,34 +103,34 @@ export function formatMessage(
   if (options.timestampFormat === 'time')
     timestamp = now.toLocaleTimeString()
 
-  // Cast process.env to LoggerEnv so TS recognizes LOG_PREFIX as an explicit property
+  // Cast process.env to LoggerEnv
   const env = getEnv()
   const envPrefix = env.LOG_PREFIX
   const prefix = options.prefix ?? envPrefix ?? 'App'
 
   const theme = LEVEL_THEMES[level] ?? LEVEL_THEMES.log
 
-  // Section 1: Prefix [FOTA] and PID
+  // Prefix and PID
   const prefixBracket = colorize(theme.prefixColor, `[${prefix}]`)
   const pidFormatted = colorize('brightGreen', pid)
   const pidStr = `${prefixBracket} ${pidFormatted}  - `
 
-  // Section 2: Timestamp
+  // Timestamp
   const timeStr = colorize('gray', timestamp)
 
-  // Section 3: Log Level Badge
+  // Log Level Badge
   const levelBadge = style(['bold', theme.badgeColor], theme.label.padEnd(7, ' '))
 
-  // Section 4: Context [GatewayController]
+  // Context
   const contextStr = colorize('brightYellow', `[${context}]`)
 
-  // Section 5: Message Highlighting
+  // Message Highlighting
   const formattedMessage
     = typeof message === 'string'
       ? highlightMessage(message, theme.defaultMsgColor)
       : `\n${formatData(message)}`
 
-  // Section 6: Optional Params (Objects / Data)
+  // Optional Params (Objects / Data)
   const formattedParams = optionalParams.length
     ? `\n${optionalParams.map(p => formatData(p)).join('\n')}`
     : ''

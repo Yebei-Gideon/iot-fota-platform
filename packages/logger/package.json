@@ -16,7 +16,8 @@
     "build": "tsc",
     "lint": "bunx --bun eslint . --cache",
     "lint:fix": "bunx --bun eslint . --cache --fix",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "watch": "tsc --watch"
   },
   "dependencies": {
     "@fota/configs": "workspace:*"

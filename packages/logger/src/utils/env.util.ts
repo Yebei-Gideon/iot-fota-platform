@@ -30,12 +30,12 @@ interface KnownEnvVars extends LoggerEnv {
 export function getEnv(): LoggerEnv {
   let rawEnv: KnownEnvVars = {}
 
-  // 1. Safe Node.js / NestJS / SSR process.env check
+  // Safe process.env check
   if (typeof process !== 'undefined' && process && process.env) {
     rawEnv = { ...(process.env as unknown as KnownEnvVars), ...rawEnv }
   }
 
-  // 2. Safe Vite / Nuxt import.meta.env check
+  // Safe import.meta.env check
   try {
     const meta = import.meta as unknown as { env?: KnownEnvVars }
     if (meta && meta.env) {

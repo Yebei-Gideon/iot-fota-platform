@@ -13,6 +13,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
+    "watch": "tsc --watch",
     "db:generate": "DEBUG='prisma:config,prisma:client-generator-ts*' prisma generate",
     "db:migrate": "DEBUG='prisma:migrate,prisma:engine' prisma migrate dev",
     "db:reset": "DEBUG='prisma:migrate,prisma:engine' prisma migrate reset",

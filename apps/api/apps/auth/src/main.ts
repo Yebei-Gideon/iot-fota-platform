@@ -6,6 +6,9 @@ import { NestFactory } from '@nestjs/core'
 import { MicroserviceOptions, Transport } from '@nestjs/microservices'
 
 const logger = new Logger(`${SERVICES.AUTH.name}`)
+logger.log('test', '1', {
+  name: 'gideon',
+})
 
 async function bootstrap() {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(AuthModule, {
