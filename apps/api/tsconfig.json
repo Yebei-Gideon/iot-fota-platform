@@ -1,0 +1,37 @@
+{
+  "extends": "@fota/configs/tsconfig.json",
+  "compilerOptions": {
+    "resolvePackageJsonExports": true,
+    "declaration": true,
+    "removeComments": true,
+    "outDir": "./dist",
+    "rootDir": ".",
+    "incremental": true,
+    "noImplicitAny": true,
+    "strictBindCallApply": true,
+    "sourceMap": true,
+    "paths": {
+      "@fota-api/common": [
+        "./libs/common/src/index.ts"
+      ],
+      "@fota-api/database": [
+        "./libs/database/src/index.ts"
+      ],
+      "@fota-api/types": [
+        "./libs/types/src/index.ts"
+      ],
+      "@fota-api/gateway/*": [
+        "./apps/gateway/src/*"
+      ],
+      "@fota-api/auth/*": [
+        "./apps/auth/src/*"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "apps/**/test",
+    "apps/**/*.spec.ts"
+  ]
+}

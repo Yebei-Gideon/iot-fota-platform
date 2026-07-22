@@ -1,4 +1,4 @@
-import {FotaLogger} from '@fota/logger'
+import { FotaLogger } from '@fota/logger'
 
 export default defineNuxtPlugin(() => {
   // Only bridge client-side logs back to the terminal during local development
@@ -6,12 +6,12 @@ export default defineNuxtPlugin(() => {
     // Save the original print function reference
     const originalPrint = (FotaLogger.prototype as any).print
 
-      // Override print to intercept browser logs
+    // Override print to intercept browser logs
     ;(FotaLogger.prototype as any).print = function (
       level: string,
       message: any,
       context?: string,
-      stack?: string
+      stack?: string,
     ) {
       // Still print in the browser console first
       originalPrint.call(this, level, message, context, stack)

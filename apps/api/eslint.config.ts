@@ -1,9 +1,7 @@
 import { baseConfig } from '@fota/configs'
 
 export default baseConfig.append({
-  name: 'logger/no-console-override',
-  files: ['**/*.ts', '**/*.js'],
   rules: {
-    'no-console': 'off',
+    'ts/consistent-type-imports': 'off',
   },
 })

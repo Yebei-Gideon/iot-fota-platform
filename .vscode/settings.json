@@ -1,0 +1,22 @@
+{
+  "[typescript]": {
+    "editor.defaultFormatter": "TypeScriptTeam.native-preview"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always",
+    "source.organizeImports": "always"
+  },
+  // Disable Prettier
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  // Format and fix errors on save
+  "editor.formatOnSave": true,
+  // Ensure ESLint flat config system is active
+  "eslint.useFlatConfig": true,
+  "eslint.validate": [
+    "javascript",
+    "typescript"
+  ],
+  // --- ADD THESE FOR ALIAS SUPPORT ---
+  "js/ts.preferences.importModuleSpecifier": "non-relative",
+  "prettier.enable": false
+}

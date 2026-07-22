@@ -15,7 +15,8 @@
   "scripts": {
     "build": "tsc",
     "lint": "bunx --bun eslint . --cache",
-    "lint:fix": "bunx --bun eslint . --cache --fix"
+    "lint:fix": "bunx --bun eslint . --cache --fix",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@fota/configs": "workspace:*"

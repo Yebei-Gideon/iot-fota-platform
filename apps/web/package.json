@@ -17,11 +17,11 @@
     "@fota/configs": "workspace:*",
     "@fota/logger": "workspace:*",
     "@fota/types": "workspace:*",
-    "@iconify-json/lucide": "^1.2.117",
-    "@iconify-json/simple-icons": "^1.2.90",
-    "@nuxt/ui": "^4.9.0",
-    "nuxt": "^4.4.8",
-    "tailwindcss": "^4.3.2"
+    "@iconify-json/lucide": "^1.2.118",
+    "@iconify-json/simple-icons": "^1.2.91",
+    "@nuxt/ui": "^4.10.0",
+    "nuxt": "^4.5.0",
+    "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.16.0",
